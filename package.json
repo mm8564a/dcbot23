@@ -1,0 +1,26 @@
+{
+  "name": "dcbot23",
+  "version": "1.0.0",
+  "description": "Max McDermott's dcbot23\r h",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mm8564a/dcbot23.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mm8564a/dcbot23/issues"
+  },
+  "homepage": "https://github.com/mm8564a/dcbot23#readme",
+  "keywords": [],
+  "dependencies": {
+    "discord.js": "^14.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.1"
+  }
+}
