@@ -1,32 +1,32 @@
-const { REST, Routes } = require('discord.js');
+// Require the necessary discord.js classes
+const { Client, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
-const fs = require('node:fs');
 
-const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+// Create a new client instance
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-// Place your client and guild ids here
-const clientId = '1022215802872672257';
-const guildId = '775355712271941644';
+// When the client is ready, run this code (only once)
+client.once('ready', () => {
+    console.log('Ready!');
+});
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	commands.push(command.data.toJSON());
-}
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isChatInputCommand()) return;
 
-const rest = new REST({ version: '10' }).setToken(token);
+    const { commandName } = interaction;
 
-(async () => {
-	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+    if (commandName === 'robloxPro?') {
+        await interaction.reply('MoreLikeRobloxNoob!');
+    } else if (commandName === 'server') {
+        await interaction.reply('Server info.');
+    } else if (commandName === 'user') {
+        await interaction.reply('User info.');
+    } else if (commandName === 'hello'){
+        await interaction.reply('howdy!')
+    }
 
-		const data = await rest.put(
-			Routes.applicationGuildCommands(clientId, guildId),
-			{ body: commands },
-		);
+});
+// Login to Discord with your client's token
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-	} catch (error) {
-		console.error(error);
-	}
-})();
+
+client.login(token);
