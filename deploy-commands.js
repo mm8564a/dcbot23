@@ -4,11 +4,13 @@ const fs = require('node:fs');
 
 const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+console.log(commandFiles);
 
 const clientId = '1022215802872672257';
 const guildId = '775355712271941644';
 
 for (const file of commandFiles) {
+	console.log(file);
 	const command = require(`./commands/${file}`);
 	commands.push(command.data.toJSON());
 }
